@@ -21,10 +21,26 @@ function fromMaybe(fa, whenNone, whenSome) {
 var randomNumber = function () { return Math.floor(Math.random() * 1000); };
 var testingMaybe = function () {
     if (randomNumber() > 500) {
-        return "Here is a Value";
+        return some("Here is a Value");
     }
     else {
-        return undefined;
+        return none();
     }
 };
-console.log(fromMaybe(some(testingMaybe()), undefined, function (val) { return val; }));
+var showDescription = function (todo) { return todo.description; };
+// Mock Todos
+var todos = [
+    { id: 1, description: 'Read a Book', completed: false }
+];
+// Create a Maybe<Todo> based on an id
+var getTodo = function (id) {
+    var todo = todos.find(function (todo) { return todo.id === id; });
+    return todo ? some(todo) : none();
+};
+// Instantiate the Maybe<Todo> via an ID
+var maybeTodo = getTodo(2);
+// Here is the logic...
+// If !exists: 'Missing Description'
+// If  exists: showDescription
+var description = fromMaybe(maybeTodo, 'Missing Description', showDescription);
+console.log(description);
