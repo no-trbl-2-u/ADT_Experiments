@@ -139,4 +139,14 @@ function none(): Option<never>{
 function some<A>(a:A): Option<A>{
   return ({type: 'Some', value: a})
 }
+
+function fromOption<A, O>
+  (fa: Option<A>, whenNone: O, whenSome: (a: A) => O): O {
+    switch(fa.type){
+      case 'None':
+        return whenNone
+      case 'Some':
+        return whenSome(fa.value)
+    }
+}
 ```
