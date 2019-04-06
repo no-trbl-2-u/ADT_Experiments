@@ -150,3 +150,5 @@ function fromOption<A, O>
     }
 }
 ```
+
+*...at this point, I ventured off and wrote my own Either<L, R> type and functions to utilize them*
