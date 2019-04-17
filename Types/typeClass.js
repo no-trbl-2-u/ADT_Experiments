@@ -16,7 +16,7 @@ var __extends = (this && this.__extends) || (function () {
 var SameName = /** @class */ (function () {
     function SameName() {
     }
-    SameName.prototype.eq = function (person1, person2) {
+    SameName.eq = function (person1, person2) {
         return person1.name === person2.name;
     };
     return SameName;
@@ -33,4 +33,4 @@ var Person = /** @class */ (function (_super) {
 var tj = new Person("TJ");
 var fred = new Person("Fred");
 var tj2 = new Person("TJ");
-console.log(tj.eq(tj, fred));
+console.log(Person.eq(tj, tj2));
